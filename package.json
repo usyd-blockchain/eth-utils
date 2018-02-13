@@ -1,5 +1,5 @@
 {
-  "name": "example-exploits",
+  "name": "eth-utils",
   "version": "1.0.0",
   "description": "",
   "main": "deploy.js",

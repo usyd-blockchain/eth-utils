@@ -31,10 +31,13 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+// default address to use when sending transactions, if an alternate address
+// is not supplied on the command line
 const DEFAULT_FROM = "0x00a329c0648769A73afAc7F9381E08FB43dBEA72";
 
 var fs = require('fs');
 var Web3 = require('web3');
+var path = require('path');
 
 if (process.argv.length < 4) {
   console.error("Usage: deploy.js Contract.abi Contract.bin [from_address]");
@@ -46,6 +49,8 @@ var from_address = process.argv[4] || DEFAULT_FROM;
 
 var abi = JSON.parse(fs.readFileSync(process.argv[2], 'utf8'));
 var code = fs.readFileSync(process.argv[3], 'utf8').trim();
+
+var contractName = path.basename(process.argv[3]).split('.')[0];
 
 if (!code.startsWith('0x')) {
   code = "0x"+code;
